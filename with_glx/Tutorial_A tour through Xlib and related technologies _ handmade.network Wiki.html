@@ -1,0 +1,1032 @@
+<!DOCTYPE html>
+<!-- saved from url=(0088)https://handmade.network/wiki/2834-tutorial_a_tour_through_xlib_and_related_technologies -->
+<html lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    
+    <link rel="canonical" href="https://handmade.network/wiki/2834-tutorial_a_tour_through_xlib_and_related_technologies">
+    
+        
+            <meta property="og:site_name" content="Handmade.Network">
+        
+            <meta property="og:type" content="website">
+        
+            <meta property="og:image" content="http://handmade.network/static/media/projects/light-logo/projects/light-logo/hmn.png">
+        
+            <meta property="og:image:secure_url" content="https://handmade.network/static/media/projects/light-logo/projects/light-logo/hmn.png">
+        
+            <meta property="og:image:type" content="image/png">
+        
+            <meta property="og:image:width" content="400">
+        
+            <meta property="og:image:height" content="400">
+        
+            <meta property="og:title" content="Tutorial/A tour through Xlib and related technologies | handmade.network Wiki">
+        
+            <meta property="og:description" content="Introduction
+As programmers interested in more than just the Microsoft world you&amp;#39;ve probably …">
+        
+            <meta property="og:url" content="https://handmade.network/wiki/2834-tutorial_a_tour_through_xlib_and_related_technologies">
+        
+    
+    <title>Tutorial/A tour through Xlib and related technologies | handmade.network Wiki</title>
+    <link href="./Tutorial_A tour through Xlib and related technologies _ handmade.network Wiki_files/css" rel="stylesheet" type="text/css">
+    <link href="./Tutorial_A tour through Xlib and related technologies _ handmade.network Wiki_files/css(1)" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="./Tutorial_A tour through Xlib and related technologies _ handmade.network Wiki_files/style.css"> 
+    <style type="text/css">
+        body {
+        
+            background-image:url("/_asset/bg/light/cd4e31.bmp");
+            background-size:auto;
+        
+        }
+    </style>
+    
+<script type="text/javascript" src="./Tutorial_A tour through Xlib and related technologies _ handmade.network Wiki_files/util.js"></script><script data-dapp-detection="">!function(){let e=!1;function n(){if(!e){const n=document.createElement("meta");n.name="dapp-detected",document.head.appendChild(n),e=!0}}if(window.hasOwnProperty("ethereum")){if(window.__disableDappDetectionInsertion=!0,void 0===window.ethereum)return;n()}else{var t=window.ethereum;Object.defineProperty(window,"ethereum",{configurable:!0,enumerable:!1,set:function(e){window.__disableDappDetectionInsertion||n(),t=e},get:function(){if(!window.__disableDappDetectionInsertion){const e=arguments.callee;e&&e.caller&&e.caller.toString&&-1!==e.caller.toString().indexOf("getOwnPropertyNames")||n()}return t}})}}();</script>
+<script type="text/javascript" src="./Tutorial_A tour through Xlib and related technologies _ handmade.network Wiki_files/wiki.js"></script>
+
+    <link rel="stylesheet" href="./Tutorial_A tour through Xlib and related technologies _ handmade.network Wiki_files/theme.css">
+    
+    <link rel="stylesheet" href="./Tutorial_A tour through Xlib and related technologies _ handmade.network Wiki_files/cd4e31.css">
+    
+    <link rel="apple-touch-icon" sizes="57x57" href="https://handmade.network/static/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="https://handmade.network/static/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="https://handmade.network/static/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="https://handmade.network/static/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="https://handmade.network/static/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="https://handmade.network/static/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="https://handmade.network/static/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="https://handmade.network/static/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://handmade.network/static/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="https://handmade.network/static/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://handmade.network/static/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="https://handmade.network/static/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://handmade.network/static/favicon-16x16.png?v=2">
+    <link rel="manifest" href="https://handmade.network/static/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/static/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+
+<body class="project wiki">
+    <div class="content mw-site ph3-m ph4-l">
+        
+
+<header class="mb3">
+    <div class="user-options flex justify-center justify-end-ns"><a class="register" id="register-link" href="https://handmade.network/_register">Register</a><a class="login" id="login-link">Log in</a><div id="login-popup"><form action="https://handmade.network/_login" method="post"><input type="hidden" name="csrfmiddlewaretoken" value="wPp1BQKA3pCRNsJg9UmPkfAjG4pGPwEtaPqsbS9zcvHBUWTcxJBz0i45Rsb05Rp0"><table><tbody><tr><th><label>Username:</label></th><td><input type="text" name="username" class="textbox username" value=""></td></tr><tr><th><label>Password:</label></th><td><input type="password" name="password" class="textbox password" value=""></td></tr><tr></tr></tbody></table><div class="actionbar pt2"><input type="submit" value="Log In"></div></form></div></div><div class="menu-bar flex flex-column flex-row-l justify-between "><div class="flex flex-column flex-row-ns"><a href="https://handmade.network/home" class="logo hmdev-logo"><div class="underscore"></div></a><div class="items flex items-center justify-center justify-start-ns"><a href="https://handmade.network/projects" class="projects">Projects</a><a href="https://handmade.network/blog" class="blogs">News</a><a href="https://handmade.network/forums" class="forums">Forums</a><a href="https://handmade.network/wiki" class="wiki">Wiki</a><a href="https://handmade.network/library" class="library">Library</a><a href="https://handmade.network/manifesto" class="misson">Mission</a></div></div><form class="dn ma0 flex-l flex-column justify-center items-end" method="post" action="https://handmade.network/_search" target="_blank"><input type="hidden" name="csrfmiddlewaretoken" value="wPp1BQKA3pCRNsJg9UmPkfAjG4pGPwEtaPqsbS9zcvHBUWTcxJBz0i45Rsb05Rp0"><input class="site-search bn lite pa2 fira" type="text" name="term" value="" placeholder="Search with Google" size="17"><input id="search_button_homepage" type="submit" value="Go"></form></div>
+</header>
+
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", function() {
+        var loginPopup = document.getElementById("login-popup");
+        var loginLink = document.getElementById("login-link");
+
+        if (loginPopup !== null) {
+            loginLink.removeAttribute("href");
+
+            loginLink.onclick = function() {
+                loginPopup.classList.toggle("open");
+            }
+        }
+    });
+</script>
+
+        
+
+    <div class="top-bar ph3 ph0-ns">
+        <a class="breadcrumb" href="https://handmade.network/">handmade.network</a>
+         » 
+        <a class="breadcrumb" href="https://handmade.network/wiki">Wiki</a>
+         » 
+        <a class="breadcrumb" href="https://handmade.network/wiki/2834-tutorial_a_tour_through_xlib_and_related_technologies">Tutorial/A tour through Xlib and related technologies</a>
+    </div>
+
+<div class="flex flex-column flex-row-l">
+    <div class="flex-grow-1 overflow-hidden">
+        
+            <div class="content-block">
+                <div class="clear"></div>
+                
+ <div class="optionbar">
+    
+        <a class="button" href="https://handmade.network/wiki">← Back to home</a>
+        
+        
+        <a class="button history" href="https://handmade.network/wiki/2834-tutorial_a_tour_through_xlib_and_related_technologies/history" title="History"><span class="big">⛕</span> Revision History</a>
+        <a class="button talk" href="https://handmade.network/wiki/2834-tutorial_a_tour_through_xlib_and_related_technologies/talk" title="Talk"><span class="big">⚖</span> Talk</a>
+    
+ </div>
+    <article class="post">
+        <div class="body">
+        <div class="contents">
+            <h1 id="introduction">Introduction</h1>
+<p>As programmers interested in more than just the Microsoft world you've probably been warned about working with windows (actual program windows, not Windows) on Linux directly. Instead we're told to just use GTK or Qt, or SDL2. While that is a worthwhile suggestion if you value your sanity, it has also lead to a definite shortage of tutorials on how to do this without the help of libraries. That's a state of affairs that only makes it even harder to do this kind of programming, and write new libraries. This is why I decided to write a little programming tutorial series on this topic.</p>
+
+<p>This tutorial covers basic window creation, event interaction, basic drawing to the window, and keyboard interaction.</p>
+<h2 id="before_we_start">Before we start</h2>
+<p>There are a few things we need to discuss before we can start.</p>
+
+<p>This tutorial is about the <code>Xlib</code> library for use with X, and not the newer xcb library. Even though <code>Xlib</code> is supposed to be "deprecated" in favor of <code>xcb</code> the latter can't be used to interface with opengl and is in most regards still very similar to <code>Xlib</code>. As far as I can tell there is no way today to really do without <code>Xlib</code>. Since that is the case I don't see the point in using two very similar libraries in one project, making <code>Xlib</code> the superior choice in just about any situation.
+I also don't think there is any need to worry about the fact that <code>Xlib</code> is described as being deprecated. <code>Xlib</code> is still by far the most widely used library of the two. We will most likely see the death of the X system before we see the end of <code>Xlib</code> support.</p>
+
+<p>With this in mind we have to get our hands on the documentation for xlib.
+The official documentation can be found at: <a href="https://www.x.org/wiki/ProgrammingDocumentation/">http://www.x.org/wiki/ProgrammingDocumentation/</a></p>
+
+<p>Although to be honest I mostly used this version: <a href="https://tronche.com/gui/x/xlib/">https://tronche.com/gui/x/xlib/</a>, since those pages turn up at the top of Google search.</p>
+
+<p>When you go through these tutorials, always have the documentation open and read it as new functions come up. I can give you an idea on what to do and where to start, but it's always better to read about the specifics in the docs.</p>
+
+<p>More relevant standards documentation that will be necessary can be found here: </p>
+
+<p><a href="https://specifications.freedesktop.org/wm-spec/1.3/">https://specifications.freedesktop.org/wm-spec/1.3/</a></p>
+
+<p><a href="https://www.x.org/releases/X11R7.6/doc/xorg-docs/specs/ICCCM/icccm.html">https://www.x.org/releases/X11R7.6/doc/xorg-docs/specs/ICCCM/icccm.html</a></p>
+
+<p>These are necessary to control the window manager. What the window manager is will be discussed shortly.</p>
+
+<p>To build these examples not much setup is necessary, just pass the code to your compiler and link with the option <code>-lX11</code>. You also need the xlib development files installed, probably to be found in a package named <code>libx11-dev</code> or similar.</p>
+<h2 id="an_overview">An overview</h2>
+<p>There are a couple of parts to the windowing system on Linux we care about. Be aware that the following is just a very rough overview that glosses over <del>some</del> most of the details. If you want to know more there are reasonably long Wikipedia articles on all of those things.</p>
+
+<ul>
+<li><p>X: Sometimes called X.org, X-Server or just X. Those things all have slightly different meanings, but let's not worry about them. I will just refer to this as X. X as used in this tutorial is the software that stores the state of all windows. Takes device input and makes it available to applications via an event system. And facilitates rendering the windows. X is also the part of the Linux system that the GPU driver typically connects to. In general you need to make an X application to use OpenGL on Linux. X is server software, clients can be on the same or on different computers.</p></li>
+<li><p>The display manager: This is a program that defines an X client session. It connects to an X server on the same or a different machine, almost all of the calls to X need you to supply the display as a client id.</p></li>
+<li><p>The window manager: Whereas X mostly just stores the state of the windows and passes events to them, the window manager is a program that actually cares about what your windows do, how they look, where they first appear on the screen and in what size. The window manager also adds what Linux land calls the 'window decoration', that is the title bar and buttons. This is important to us because in some cases the API for interacting with the window manager is different from the one for interacting with X itself.</p></li>
+<li><p>The X application. That's us! This is also where <code>Xlib</code> comes into play. X was originally designed for use over the network, and this still works to a degree today. But mostly what this means for us is that we should be aware that when we are using <code>Xlib</code> we are not calling functions in X directly. But rather <code>Xlib</code> is a C wrapper around the network protocol used by X. This means that anything we do happens asynchronously in another thread, another process. When we want to make sure that changes have really taken effect we need to flush the buffer of commands.</p></li>
+</ul>
+<h2 id="finally_some_code">Finally some code</h2>
+<p>All code used in this article is available in full on github. The part number is indicated in the file name. Probably a good idea to have those files open for reference.
+<a href="https://github.com/eisbehr/xlibtut">https://github.com/eisbehr/xlibtut</a></p>
+<h1 id="part_0_-_creating_a_window">Part 0 - Creating a Window</h1>
+<p>We'll go through the code step by step. To see it in full see the files on github.</p>
+<div class="code"><table class="C codeblocktable"><tbody><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11</pre></div></td><td class="code"><div class="C codeblock"><pre><span></span><span class="cp">#include</span><span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="cpf">&lt;stdlib.h&gt;</span><span class="cp"></span>
+
+<span class="cp">#include</span><span class="cpf">&lt;X11/Xlib.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="cpf">&lt;X11/Xutil.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="cpf">&lt;X11/Xatom.h&gt;</span><span class="cp"></span>
+
+<span class="kt">int</span>
+<span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">**</span> <span class="n">args</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></tbody></table></div>
+<p>This is probably the first small difference for people coming from Windows. There is no special main function for programs that want to create a window, just the standard C <code>main()</code> one. The next couple of snippets belong inside the <code>main()</code> function</p>
+<div class="code"><table class="C codeblocktable"><tbody><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13</pre></div></td><td class="code"><div class="C codeblock"><pre><span></span><span class="kt">int</span> <span class="n">width</span> <span class="o">=</span> <span class="mi">800</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">height</span> <span class="o">=</span> <span class="mi">600</span><span class="p">;</span>
+
+<span class="n">Display</span><span class="o">*</span> <span class="n">display</span> <span class="o">=</span> <span class="n">XOpenDisplay</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+
+<span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">display</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">printf</span><span class="p">(</span><span class="s">"No display available</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+  <span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="n">root</span> <span class="o">=</span> <span class="n">DefaultRootWindow</span><span class="p">(</span><span class="n">display</span><span class="p">);</span>
+<span class="kt">int</span> <span class="n">defaultScreen</span> <span class="o">=</span> <span class="n">DefaultScreen</span><span class="p">(</span><span class="n">display</span><span class="p">);</span>
+</pre></div>
+</td></tr></tbody></table></div>
+<p>First we define the width and height for later use.</p>
+
+<p>Then we open the standard display (by passing 0). X is set up as a client-server model with a network protocol. This means the server needs to have an idea of what clients there are, and which windows can interact with which other windows. The X server also needs to know who it is talking to, so we have to keep the display pointer. We will pass this to most other <code>Xlib</code> functions. We also check that the call returned a valid display.</p>
+
+<p>Next we get a root window. Windows are organized in a tree structure, so there has to be a parent to every window we create. We are making a normal "top level" window, so our parent needs to be the "desktop", this is what the root window is. If we were making an application with a setting windows we could use our own main window as the parent to the settings window.</p>
+
+<p>As a last thing in this paste we get the default screen. A screen in X is generally just an area or a buffer to be rendered to, this can be through a graphics device onto a real monitor, or completely in software to an in-memory target.</p>
+<div class="code"><table class="C codeblocktable"><tbody><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="C codeblock"><pre><span></span><span class="kt">int</span> <span class="n">screenBitDepth</span> <span class="o">=</span> <span class="mi">24</span><span class="p">;</span>
+<span class="n">XVisualInfo</span> <span class="n">visinfo</span> <span class="o">=</span> <span class="p">{};</span>
+<span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">XMatchVisualInfo</span><span class="p">(</span><span class="n">display</span><span class="p">,</span> <span class="n">defaultScreen</span><span class="p">,</span> <span class="n">screenBitDepth</span><span class="p">,</span> <span class="n">TrueColor</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">visinfo</span><span class="p">))</span>
+<span class="p">{</span>
+  <span class="n">printf</span><span class="p">(</span><span class="s">"No matching visual info</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+  <span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></tbody></table></div>
+<p>Here we define what kind of requirement we have for our render target. This used to be a lot more interesting in 1984 (This is how old X is) when there were monochrome displays and displays of different color depths. Nowadays this is pretty much always the same. With 24 bits for RGB-8-8-8 and TrueColor.</p>
+
+<p>XMatchVisual takes our requirements, matches them against an internal list of visualInfos that are supported on this hardware, and then returns the best fit. Or no fit if it's not possible to meet our requirements, but that is very unlikely these days.</p>
+<div class="code"><table class="C codeblocktable"><tbody><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17</pre></div></td><td class="code"><div class="C codeblock"><pre><span></span><span class="n">XSetWindowAttributes</span> <span class="n">windowAttr</span><span class="p">;</span>
+<span class="n">windowAttr</span><span class="p">.</span><span class="n">background_pixel</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="n">windowAttr</span><span class="p">.</span><span class="n">colormap</span> <span class="o">=</span> <span class="n">XCreateColormap</span><span class="p">(</span><span class="n">display</span><span class="p">,</span> <span class="n">root</span><span class="p">,</span>
+             <span class="n">visinfo</span><span class="p">.</span><span class="n">visual</span><span class="p">,</span> <span class="n">AllocNone</span><span class="p">);</span>
+<span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">attributeMask</span> <span class="o">=</span> <span class="n">CWBackPixel</span> <span class="o">|</span> <span class="n">CWColormap</span><span class="p">;</span>
+
+<span class="n">Window</span> <span class="n">window</span> <span class="o">=</span> <span class="n">XCreateWindow</span><span class="p">(</span><span class="n">display</span><span class="p">,</span> <span class="n">root</span><span class="p">,</span>
+                              <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span>
+                              <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span>
+                              <span class="n">visinfo</span><span class="p">.</span><span class="n">depth</span><span class="p">,</span> <span class="n">InputOutput</span><span class="p">,</span>
+                              <span class="n">visinfo</span><span class="p">.</span><span class="n">visual</span><span class="p">,</span> <span class="n">attributeMask</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">windowAttr</span><span class="p">);</span>
+
+<span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">window</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">printf</span><span class="p">(</span><span class="s">"Window wasn't created properly</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+  <span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></tbody></table></div>
+<p>This is where we create the window. We set some attributes for the window in the <code>XSetWindowAttributes</code> structure. We set the background fill pixel to be black and create a colormap from the visualinfo we created earlier.
+Then we define the <code>attributeMask</code>, a mask that tells <code>XCreateWindow</code> which of the attributes we want to get used. We want to use all of those we set.</p>
+
+<p><code>XCreateWindow</code> is pretty self explanatory at this point if you look at the documentation for it. We just pass it all the info we have prepared so far. <code>InputOutput</code> means that this window will receive and handle incoming events and also output to the screen.</p>
+
+<p>We then check that creating the window worked.</p>
+<div class="code"><table class="C codeblocktable"><tbody><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="C codeblock"><pre><span></span>  <span class="n">XStoreName</span><span class="p">(</span><span class="n">display</span><span class="p">,</span> <span class="n">window</span><span class="p">,</span> <span class="s">"Hello, World!"</span><span class="p">);</span>
+
+  <span class="n">XMapWindow</span><span class="p">(</span><span class="n">display</span><span class="p">,</span> <span class="n">window</span><span class="p">);</span>
+  <span class="n">XFlush</span><span class="p">(</span><span class="n">display</span><span class="p">);</span>
+
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</pre></div>
+</td></tr></tbody></table></div>
+<p>First let's give our window an appropriate title. The window title is a feature of the window manager. <code>XStoreName()</code> is a convenience function that keeps this API hidden from us for a little longer.
+Now we map the window onto the display. This means that the window will become visible. We then flush to make sure all of our commands have gone through to the server.
+If we now run this… nothing happens. When we start this in a debugger and break at the last line, we see that the window was successfully created but closes immediately. So far so good.</p>
+
+<p>Let's get it to actually show a window. Add the following after the XFlush();</p>
+<div class="code"><table class="C codeblocktable"><tbody><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="C codeblock"><pre><span></span><span class="k">while</span><span class="p">(</span><span class="nb">true</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></tbody></table></div>
+<p>When we run our program now we can see that the window stays open. We can now press the close button on the window and it closes!</p>
+
+<p>But wait… we made the program get stuck in an endless loop, how could it escape from that loop to close? If we look at our task manager we can see that the process belonging to our happy little window is still running. This is because the window itself is not directly connected to the process of our program. Closing the window through the window manager, and on the side of the X server, does not kill our process.</p>
+<h1 id="part_1_-_closing_the_application">Part 1 - Closing the Application</h1>
+<p>To solve this inconvenience we need some way to set the while loop to false when the window is closed. The way to do this is through events.</p>
+<div class="code"><table class="C codeblocktable"><tbody><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19</pre></div></td><td class="code"><div class="C codeblock"><pre><span></span><span class="kt">int</span> <span class="n">windowOpen</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="k">while</span><span class="p">(</span><span class="n">windowOpen</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">XEvent</span> <span class="n">ev</span> <span class="o">=</span> <span class="p">{};</span>
+    <span class="k">while</span><span class="p">(</span><span class="n">XPending</span><span class="p">(</span><span class="n">display</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+      <span class="p">{</span>
+        <span class="n">XNextEvent</span><span class="p">(</span><span class="n">display</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">ev</span><span class="p">);</span>
+        <span class="k">switch</span><span class="p">(</span><span class="n">ev</span><span class="p">.</span><span class="n">type</span><span class="p">)</span>
+          <span class="p">{</span>
+          <span class="k">case</span> <span class="nl">DestroyNotify</span><span class="p">:</span> <span class="p">{</span>
+            <span class="n">XDestroyWindowEvent</span><span class="o">*</span> <span class="n">e</span> <span class="o">=</span> <span class="p">(</span><span class="n">XDestroyWindowEvent</span><span class="o">*</span><span class="p">)</span> <span class="o">&amp;</span><span class="n">ev</span><span class="p">;</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">e</span><span class="o">-&gt;</span><span class="n">window</span> <span class="o">==</span> <span class="n">window</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">windowOpen</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+            <span class="p">}</span>
+          <span class="p">}</span> <span class="k">break</span><span class="p">;</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
+    <span class="p">};</span>
+</pre></div>
+</td></tr></tbody></table></div>
+<p>We replace the while loop from the last part with this one.</p>
+
+<p>This is the basic event loop. It runs while there are pending events. When there is one, it takes an event off the event stack and switches on its event type.
+What we care about is the <code>DestroyNotify</code> event, we need to cast the general event to this specific type. Now we check if the event is targeted at our own window and set <code>windowOpen</code> to false if that is the case.
+What's interesting to note here is that each event tells us which window it is meant for. We should only receive events that belong to our own main window, but if we have opened several windows that might not be true, so we check to make sure. If you keep in mind why this check exists, you can leave it off for as long as you only have one window open.</p>
+
+<p>To make event processing work there is something that has to be adjusted in code we've already written. In our <code>windowAttrs</code> we need to add one extra value, and we have to add some more values to the <code>attributeMask</code> (This code is right before we create the window with <code>XCreateWindow</code>).</p>
+<div class="code"><table class="C codeblocktable"><tbody><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="C codeblock"><pre><span></span>  <span class="n">windowAttr</span><span class="p">.</span><span class="n">event_mask</span> <span class="o">=</span> <span class="n">StructureNotifyMask</span><span class="p">;</span>
+  <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">attributeMask</span> <span class="o">=</span> <span class="n">CWBackPixel</span> <span class="o">|</span> <span class="n">CWColormap</span> <span class="o">|</span> <span class="n">CWEventMask</span><span class="p">;</span>
+</pre></div>
+</td></tr></tbody></table></div>
+<p>When we set our window attributes we add another attribute, the event_mask. As you can look up in the documentation, the <code>DestroyNotify</code> event is part of the <code>StructureNotify</code> group, we have to set the <code>StructureNotifyMask</code> on the window to tell X that we want to receive events of that type. This kind of opt-in into events limits the amount of events we receive and thus the time we spend on the event loop working through events we don't actually care about.
+On our attribute mask that tells <code>XCreateWindow()</code> which attributes are set we add the <code>CWEventMask</code>.</p>
+
+<p>Now we have a window that stays open, and and application that ends when the window is closed. Pretty neat, eh?</p>
+<h1 id="part_2_-_minimum_size">Part 2 - Minimum Size</h1>
+<p>Now that we have the nitty gritty part out of the way let's add some niceties to get more used to the way the rest of the API works. Let's start with something simple.</p>
+
+<p>When we grab the edge of the window and resize it to be smaller we notice that there is no limit to how small we can make the window. Let's change that and give it a minimum size.</p>
+<div class="code"><table class="C codeblocktable"><tbody><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21</pre></div></td><td class="code"><div class="C codeblock"><pre><span></span><span class="kt">void</span>
+<span class="nf">setSizeHint</span><span class="p">(</span><span class="n">Display</span><span class="o">*</span> <span class="n">display</span><span class="p">,</span> <span class="n">Window</span> <span class="n">window</span><span class="p">,</span>
+            <span class="kt">int</span> <span class="n">minWidth</span><span class="p">,</span> <span class="kt">int</span> <span class="n">minHeight</span><span class="p">,</span>
+            <span class="kt">int</span> <span class="n">maxWidth</span><span class="p">,</span> <span class="kt">int</span> <span class="n">maxHeight</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">XSizeHints</span> <span class="n">hints</span> <span class="o">=</span> <span class="p">{};</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">minWidth</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">minHeight</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="n">hints</span><span class="p">.</span><span class="n">flags</span> <span class="o">|=</span> <span class="n">PMinSize</span><span class="p">;</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">maxWidth</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">maxHeight</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="n">hints</span><span class="p">.</span><span class="n">flags</span> <span class="o">|=</span> <span class="n">PMaxSize</span><span class="p">;</span>
+
+  <span class="n">hints</span><span class="p">.</span><span class="n">min_width</span> <span class="o">=</span> <span class="n">minWidth</span><span class="p">;</span>
+  <span class="n">hints</span><span class="p">.</span><span class="n">min_height</span> <span class="o">=</span> <span class="n">minHeight</span><span class="p">;</span>
+  <span class="n">hints</span><span class="p">.</span><span class="n">max_width</span> <span class="o">=</span> <span class="n">maxWidth</span><span class="p">;</span>
+  <span class="n">hints</span><span class="p">.</span><span class="n">max_height</span> <span class="o">=</span> <span class="n">maxHeight</span><span class="p">;</span>
+
+  <span class="n">XSetWMNormalHints</span><span class="p">(</span><span class="n">display</span><span class="p">,</span> <span class="n">window</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">hints</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="err">…</span>
+<span class="p">(</span><span class="n">in</span> <span class="n">main</span><span class="p">,</span> <span class="n">before</span> <span class="n">XMapWindow</span><span class="p">())</span>
+
+<span class="n">setSizeHint</span><span class="p">(</span><span class="n">display</span><span class="p">,</span> <span class="n">window</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="mi">300</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+</pre></div>
+</td></tr></tbody></table></div>
+<p>We fill out an XSizeHints structure and set it. By setting the flags only when a nonzero size is passed, we make it so that 0 means <code>unset</code>. When we call our function with the given parameters we get a window that can be as big as it wants, but no smaller than 400x300;</p>
+
+<p>Size hints are another window manager feature, like the window title, and this is another one of those convenience functions.</p>
+<h1 id="part_3_-_maximize_window">Part 3 - Maximize Window</h1>
+<p>Let's try maximizing the window. No more convenience for this one. Now we'll learn about the API used to communicate with the window manager, atoms and properties. This is where you should definitely open the window manager documentation mentioned in the beginning.</p>
+
+<p>Atoms are in and of themselves not difficult to understand, it's just the silly name that makes them seem complicated. Information and properties about our window are stored inside X in so called <code>properties</code>. Properties are identified by unique labels, those labels are called <code>atoms</code>. In essence, X simply calls key-value pairs atom-property pairs, for some reason. Probably better not to ask.</p>
+<div class="code"><table class="C codeblocktable"><tbody><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28</pre></div></td><td class="code"><div class="C codeblock"><pre><span></span><span class="n">Status</span> 
+<span class="nf">toggleMaximize</span><span class="p">(</span><span class="n">Display</span><span class="o">*</span> <span class="n">display</span><span class="p">,</span> <span class="n">Window</span> <span class="n">window</span><span class="p">)</span> 
+<span class="p">{</span>  
+    <span class="n">XClientMessageEvent</span> <span class="n">ev</span> <span class="o">=</span> <span class="p">{};</span>
+    <span class="n">Atom</span> <span class="n">wmState</span> <span class="o">=</span> <span class="n">XInternAtom</span><span class="p">(</span><span class="n">display</span><span class="p">,</span> <span class="s">"_NET_WM_STATE"</span><span class="p">,</span> <span class="n">False</span><span class="p">);</span>
+    <span class="n">Atom</span> <span class="n">maxH</span>  <span class="o">=</span>  <span class="n">XInternAtom</span><span class="p">(</span><span class="n">display</span><span class="p">,</span> <span class="s">"_NET_WM_STATE_MAXIMIZED_HORZ"</span><span class="p">,</span> <span class="n">False</span><span class="p">);</span>
+    <span class="n">Atom</span> <span class="n">maxV</span>  <span class="o">=</span>  <span class="n">XInternAtom</span><span class="p">(</span><span class="n">display</span><span class="p">,</span> <span class="s">"_NET_WM_STATE_MAXIMIZED_VERT"</span><span class="p">,</span> <span class="n">False</span><span class="p">);</span>
+
+    <span class="k">if</span><span class="p">(</span><span class="n">wmState</span> <span class="o">==</span> <span class="n">None</span><span class="p">)</span> <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+
+    <span class="n">ev</span><span class="p">.</span><span class="n">type</span> <span class="o">=</span> <span class="n">ClientMessage</span><span class="p">;</span>
+    <span class="n">ev</span><span class="p">.</span><span class="n">format</span> <span class="o">=</span> <span class="mi">32</span><span class="p">;</span>
+    <span class="n">ev</span><span class="p">.</span><span class="n">window</span> <span class="o">=</span> <span class="n">window</span><span class="p">;</span>
+    <span class="n">ev</span><span class="p">.</span><span class="n">message_type</span> <span class="o">=</span> <span class="n">wmState</span><span class="p">;</span>
+    <span class="n">ev</span><span class="p">.</span><span class="n">data</span><span class="p">.</span><span class="n">l</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="c1">// _NET_WM_STATE_TOGGLE 2 according to spec; Not defined in my headers</span>
+    <span class="n">ev</span><span class="p">.</span><span class="n">data</span><span class="p">.</span><span class="n">l</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">maxH</span><span class="p">;</span>
+    <span class="n">ev</span><span class="p">.</span><span class="n">data</span><span class="p">.</span><span class="n">l</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">maxV</span><span class="p">;</span>
+    <span class="n">ev</span><span class="p">.</span><span class="n">data</span><span class="p">.</span><span class="n">l</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+
+    <span class="k">return</span> <span class="n">XSendEvent</span><span class="p">(</span><span class="n">display</span><span class="p">,</span> <span class="n">DefaultRootWindow</span><span class="p">(</span><span class="n">display</span><span class="p">),</span> <span class="n">False</span><span class="p">,</span>
+                      <span class="n">SubstructureNotifyMask</span><span class="p">,</span>
+                      <span class="p">(</span><span class="n">XEvent</span> <span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">ev</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="err">…</span>
+<span class="p">(</span><span class="n">in</span> <span class="n">main</span><span class="p">,</span> <span class="n">after</span> <span class="n">XMapWindow</span><span class="p">())</span>
+
+<span class="n">toggleMaximize</span><span class="p">(</span><span class="n">display</span><span class="p">,</span> <span class="n">window</span><span class="p">);</span>
+</pre></div>
+</td></tr></tbody></table></div>
+<p>The Atom-property pairs are sent to X through the event system. There is a special event type that flows from the client to the server, the <code>ClientMessage</code>.</p>
+
+<p>Atoms need to be queried by name. The function also wants to know if an Atom should be created if it does not exist, we do not want that. We are using standardized Atoms that need to exist, if they don't exist we probably made a typo and want to know about that. As far as I can tell Atoms are just integer indices, but there is a special <code>None</code> value, so we check against that. We also only check against the <code>_NET_WM_STATE</code> Atom, since the presence of this atom implies the presence of the other two according to the specification.
+(<a href="https://specifications.freedesktop.org/wm-spec/1.3/ar01s05.html#idm140238712324208">https://specifications.freedesktop.org/wm-spec/1.3/ar01s05.html#idm140238712324208</a>)</p>
+
+<p>Now we're filling out the client message. <code>type</code> is <code>ClientMessage</code> which is a pre-#defined int. </p>
+
+<p>The <code>format</code> is 32. This means 32bits and tells the recipient of this messages what kind of data we put into the <code>ev.data.*</code> array. This data array portion is a union with </p>
+<div class="code"><table class="C codeblocktable"><tbody><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="C codeblock"><pre><span></span><span class="k">union</span> <span class="p">{</span>
+    <span class="kt">char</span> <span class="n">b</span><span class="p">[</span><span class="mi">20</span><span class="p">];</span>
+    <span class="kt">short</span> <span class="n">s</span><span class="p">[</span><span class="mi">10</span><span class="p">];</span>
+    <span class="kt">long</span> <span class="n">l</span><span class="p">[</span><span class="mi">5</span><span class="p">];</span>
+<span class="p">}</span> <span class="n">data</span><span class="p">;</span>
+</pre></div>
+</td></tr></tbody></table></div>
+<p>The possible values for <code>format</code> are 8, 16 or 32, which are the corresponding bit sizes for the char, short, and long types.</p>
+
+<p>Then we pass our <code>window</code>, and our atom <code>message_type</code>. The data array starts with 2 to signify a "toggle", as per specification (they define <code>_NET_WM_STATE_TOGGLE</code> as 2, but my headers don't seem to include this define). Following this the two atoms for vertical and horizontal maximization. The last number is a "source indication", this is a number that indicates if your program is a normal user application, something like a task bar, or following and older version of the protocol. The source indication for a normal application is <code>1</code> (spec: <a href="https://specifications.freedesktop.org/wm-spec/1.3/ar01s07.html#sourceindication">https://specifications.freedesktop.org/wm-spec/1.3/ar01s07.html#sourceindication</a>)</p>
+
+<p>When our event is done we send it on its merry way. Again, in accordance with the <code>_NET_WM_STATE</code> specification, we know that this kind of message has to be sent to the root window (which is something like the "desktop").  The <code>event_mask</code> to be used is not entirely clear to me, but in my tests the maximizing only takes effect if there is a mask given, and <code>SubstructureNotifyMask</code>, which is defined to mean "Any change in window structure wanted" makes sense in this case (and works, which is a plus). </p>
+
+<p>Make sure to familiarize yourself with the documentation and specification documents at this point so that you can understand where all this information comes from and how you could find it yourself. This is the most important skill to learn for when you need to solve different problems yourself.</p>
+<h1 id="part_4_-_even_better_shutdown">Part 4 - Even better shutdown</h1>
+<p>As a first order of business, let's remove the call to <code>toggleMaximize()</code>. It was a good way to show the window manager api, but we don't need it right now.</p>
+<div class="code"><table class="C codeblocktable"><tbody><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4</pre></div></td><td class="code"><div class="C codeblock"><pre><span></span>  <span class="n">XMapWindow</span><span class="p">(</span><span class="n">display</span><span class="p">,</span> <span class="n">window</span><span class="p">);</span>
+
+  <span class="c1">//toggleMaximize(display, window);</span>
+  <span class="n">XFlush</span><span class="p">(</span><span class="n">display</span><span class="p">);</span>
+</pre></div>
+</td></tr></tbody></table></div>
+<p>Now that we've learned about <code>atoms</code> and <code>ClientMessage</code> events we can improve the way our program shuts down and closes the window. If you've been running your program from a terminal you might have noticed that you're getting an error message when closing the window. This is because the window manager closes the window for you, and not in the most graceful manner. This is why there is a special way for the window manager to tell you that the window close button was pressed without actually closing the window itself. But we have to opt into this feature to use it, and still keep the old way of doing things in case that opt-in doesn't work.</p>
+<div class="code"><table class="C codeblocktable"><tbody><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20</pre></div></td><td class="code"><div class="C codeblock"><pre><span></span><span class="c1">//</span>
+<span class="c1">// after XFlush()</span>
+<span class="c1">//</span>
+<span class="n">Atom</span> <span class="n">WM_DELETE_WINDOW</span> <span class="o">=</span> <span class="n">XInternAtom</span><span class="p">(</span><span class="n">display</span><span class="p">,</span> <span class="s">"WM_DELETE_WINDOW"</span><span class="p">,</span> <span class="n">False</span><span class="p">);</span>
+    <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">XSetWMProtocols</span><span class="p">(</span><span class="n">display</span><span class="p">,</span> <span class="n">window</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">WM_DELETE_WINDOW</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+    <span class="p">{</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"Couldn't register WM_DELETE_WINDOW property</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+    <span class="p">}</span>
+
+<span class="c1">//</span>
+<span class="c1">// After DestroyNotify case</span>
+<span class="c1">//</span>
+<span class="k">case</span> <span class="nl">ClientMessage</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="n">XClientMessageEvent</span><span class="o">*</span> <span class="n">e</span> <span class="o">=</span> <span class="p">(</span><span class="n">XClientMessageEvent</span><span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">ev</span><span class="p">;</span>
+                    <span class="k">if</span><span class="p">((</span><span class="n">Atom</span><span class="p">)</span><span class="n">e</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">.</span><span class="n">l</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">WM_DELETE_WINDOW</span><span class="p">)</span>
+                    <span class="p">{</span>
+                        <span class="n">XDestroyWindow</span><span class="p">(</span><span class="n">display</span><span class="p">,</span> <span class="n">window</span><span class="p">);</span>
+                        <span class="n">windowOpen</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+                    <span class="p">}</span>
+                <span class="p">}</span> <span class="k">break</span><span class="p">;</span>
+</pre></div>
+</td></tr></tbody></table></div>
+<p>What where're doing here should be mostly familiar. We're getting an Atom, details about it are in the spec. (<a href="https://www.x.org/releases/X11R7.6/doc/xorg-docs/specs/ICCCM/icccm.html#clientmessage_events">https://www.x.org/releases/X11R7.6/doc/xorg-docs/specs/ICCCM/icccm.html#clientmessage_events</a>)
+Then we use the <code>XSetWMProtocols</code> function to set a property on our window to tell the window manager that we would like to receive an event about window deletion so we can do it ourselves.
+This is what we then do in our event loop. We receive a <code>ClientMessage</code>, check that it's a message about window deletion, and then destroy our window ourselves and tell our loop to quit since the window is now gone.
+This should get rid of any error messages.</p>
+<h1 id="part_5_-_the_buffer">Part 5 - The buffer</h1>
+<p>To show how to get something <strong>into</strong> the window we are going to write directly into a memory buffer, which we then draw into the window using an <code>Xlib</code> function.</p>
+
+<p>Right after the <code>XFlush()</code> we add the next big chunk of code.</p>
+<div class="code"><table class="C codeblocktable"><tbody><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9</pre></div></td><td class="code"><div class="C codeblock"><pre><span></span>  <span class="kt">int</span> <span class="n">pixelBits</span> <span class="o">=</span> <span class="mi">32</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">pixelBytes</span> <span class="o">=</span> <span class="n">pixelBits</span><span class="o">/</span><span class="mi">8</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">windowBufferSize</span> <span class="o">=</span> <span class="n">width</span><span class="o">*</span><span class="n">height</span><span class="o">*</span><span class="n">pixelBytes</span><span class="p">;</span>
+  <span class="kt">char</span><span class="o">*</span> <span class="n">mem</span>  <span class="o">=</span> <span class="p">(</span><span class="kt">char</span><span class="o">*</span><span class="p">)</span><span class="n">malloc</span><span class="p">(</span><span class="n">windowBufferSize</span><span class="p">);</span>
+
+  <span class="n">XImage</span><span class="o">*</span> <span class="n">xWindowBuffer</span> <span class="o">=</span> <span class="n">XCreateImage</span><span class="p">(</span><span class="n">display</span><span class="p">,</span> <span class="n">visinfo</span><span class="p">.</span><span class="n">visual</span><span class="p">,</span> <span class="n">visinfo</span><span class="p">.</span><span class="n">depth</span><span class="p">,</span>
+                                       <span class="n">ZPixmap</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">mem</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span>
+                                       <span class="n">pixelBits</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+  <span class="n">GC</span> <span class="n">defaultGC</span> <span class="o">=</span> <span class="n">DefaultGC</span><span class="p">(</span><span class="n">display</span><span class="p">,</span> <span class="n">defaultScreen</span><span class="p">);</span>
+</pre></div>
+</td></tr></tbody></table></div>
+<p>The first couple of lines should be self explanatory. We simply define that our image will have 32 bit sized pixels, make that into bytes since we need it later, then combine it with our <code>width</code> and <code>height</code> to compute the amount of memory we need. We then malloc this amount of memory.</p>
+
+<p>The meat is in the next two functions. Since we don't just want this image buffer for ourselves, but need to give it to X later to display in the window, we need to wrap it into an X compatible image structure.</p>
+
+<p>We pass <code>XCreateImage</code> the <code>display</code>, and the <code>visual</code> from the <code>visinfo</code> we created for our window. We then give it the pixel depth, also from the <code>visinfo</code>. The next argument is an interesting one.</p>
+
+<p>We pass <code>ZPixmap</code> for the <code>format</code>here. But why <code>ZPixmap</code>? According to documentation this argument can take one of <code>XYBitmap, XYPixmap, or ZPixmap</code>. I wouldn't fault you for thinking that what we're making here is an <code>XYBitmap</code>. We have a <code>width</code> and <code>height</code> after all, and it's a bitmap if I ever saw one.</p>
+
+<p>To get to the bottom of why we choose a <code>ZPixmap</code> we need to get the difference between a <code>bitmap</code> and a <code>pixmap</code> out of the way. In X-speak a bitmap is an image that you only use locally in your program. A <code>pixmap</code> is a bitmap that can be sent to the X server, and therefore can be displayed on a monitor. This means we want a <code>pixmap</code>.</p>
+
+<p>So what's left is the choice between <code>ZPixmap</code> and <code>XYPixmap</code>. Information on this is hard to find, but it is mentioned in passing in the X server specification. <a href="https://www.x.org/releases/X11R7.6/doc/xorg-server/Xserver-spec.html">http://www.x.org/releases/X11R7.6/doc/xorg-server/Xserver-spec.html</a></p>
+<blockquote><p>Pixmap images are transferred to the server in one of two ways: XYPixmap or ZPixmap. XYPixmaps are a series of bitmaps, one for each bit plane of the image, using the bitmap padding rules from the connection setup. ZPixmaps are a series of bits, nibbles, bytes or words, one for each pixel, using the format rules (padding and so on) for the appropriate depth.</p>
+</blockquote>
+<p>So <code>XYPixmaps</code> are for passing a number of bitplanes. Bitplanes are another one of those things that were pretty cool in 1984 when X first came out, but are basically not used anymore today. To not blow the scope of this article right open, let's just agree to disregard them. When we read further we see that the roundabout explanation of the <code>ZPixmap</code> fits our use case better. In our case it's a series of 4-byte words for each pixel.</p>
+
+<p>With this big one out of the way the next three argument are a bit of a breather. We simply pass the memory we allocated and the <code>width</code> and <code>height</code> of our window and image.</p>
+
+<p>The next argument is called <code>bitmap_pad</code> in the documentation. I want you to read how it is described.</p>
+<blockquote><p>Specifies the quantum of a scanline (8, 16, or 32). In other words, the start of one scanline is separated in client memory from the start of the next scanline by an integer multiple of this many bits.</p>
+</blockquote>
+<p>This is a very roundabout way of describing the pixel size in bits. You'll see many annoying descriptions like this when you read the X documentation. </p>
+
+<p>The description also mentions scanlines. For our purposes a scanline is simply a row, or horizontal line, in our bitmap. It has the size of <code>width * pixelBytes</code>.</p>
+
+<p>The last argument is <code>bytes_per_line</code>. This argument is not actually about the bytes per line at all. It is the offset from the start of one line to the start of the next line. So if your image is 3 pixels wide, with 4-byte pixels and a 2 byte space between each line, this argument would be set to <code>3*4+2</code>. But if the lines of our image are contiguous, as they are in our case, we can simply pass a 0 here and <code>XCreateImage()</code> will calculate the value itself.</p>
+
+<p>As a last thing that we create in the paste is a graphics context. This is simply some information for X that is specific to the actual hardware we draw to. We need this any time we want to draw something with Xlib that ends up on the actual screen.</p>
+
+<p>Next we add a little something after the even loop to draw a bit of a pattern to our image memory. We want to see if it worked after all.
+This code simply draws a black and white grid over the complete image.</p>
+<div class="code"><table class="C codeblocktable"><tbody><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21</pre></div></td><td class="code"><div class="C codeblock"><pre><span></span><span class="c1">//</span>
+<span class="c1">// Event loop here, add this code after it.</span>
+<span class="c1">//</span>
+
+<span class="kt">int</span> <span class="n">pitch</span> <span class="o">=</span> <span class="n">width</span><span class="o">*</span><span class="n">pixelBytes</span><span class="p">;</span>
+<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">y</span><span class="o">&lt;</span><span class="n">height</span><span class="p">;</span> <span class="n">y</span><span class="o">++</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="kt">char</span><span class="o">*</span> <span class="n">row</span> <span class="o">=</span> <span class="n">mem</span><span class="o">+</span><span class="p">(</span><span class="n">y</span><span class="o">*</span><span class="n">pitch</span><span class="p">);</span>
+  <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">x</span><span class="o">&lt;</span><span class="n">width</span><span class="p">;</span> <span class="n">x</span><span class="o">++</span><span class="p">)</span>
+    <span class="p">{</span>
+      <span class="kt">unsigned</span> <span class="kt">int</span><span class="o">*</span> <span class="n">p</span> <span class="o">=</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">int</span><span class="o">*</span><span class="p">)</span> <span class="p">(</span><span class="n">row</span><span class="o">+</span><span class="p">(</span><span class="n">x</span><span class="o">*</span><span class="n">pixelBytes</span><span class="p">));</span>
+      <span class="k">if</span><span class="p">(</span><span class="n">x</span><span class="o">%</span><span class="mi">16</span> <span class="o">&amp;&amp;</span> <span class="n">y</span><span class="o">%</span><span class="mi">16</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="o">*</span><span class="n">p</span> <span class="o">=</span> <span class="mh">0xffffffff</span><span class="p">;</span>
+        <span class="p">}</span>
+      <span class="k">else</span>
+        <span class="p">{</span>
+            <span class="o">*</span><span class="n">p</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></tbody></table></div>
+<p>As a last step in this part we need to draw the image in our own memory to the window. Add the next one right after our grid drawing code.</p>
+<div class="code"><table class="C codeblocktable"><tbody><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="C codeblock"><pre><span></span><span class="n">XPutImage</span><span class="p">(</span><span class="n">display</span><span class="p">,</span> <span class="n">window</span><span class="p">,</span>
+          <span class="n">defaultGC</span><span class="p">,</span> <span class="n">xWindowBuffer</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span>
+          <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">);</span>
+</pre></div>
+</td></tr></tbody></table></div>
+<p><code>XPutImage()</code> takes the <code>display</code>, <code>window</code>, and the <code>defaultGC</code> we created earlier. We draw to the window, so we need the GC. We then give it the XImage we created.</p>
+
+<p>The next four values are offsets in the source image, as well as the destination image. We would use this if we only wanted to update part of the window from part of our image. But since we're keeping this simple it's just four zeros. Then follow the <code>width</code> and <code>height</code> again.
+Well, this one was refreshingly easy!</p>
+
+<p>If you compile and run this you'll see a black grid on a white background.</p>
+<h1 id="part_6_-_adapting_to_changing_window_size">Part 6 - Adapting to changing window size</h1>
+<p>One thing you'll notice when you play around with the window is that changing the window size does… not much. All the new space we get from a bigger window is simply black! This is not cool. It's black because we set the background pixel to be black when we create the window.</p>
+
+<p>To change the size of our <code>xWindowBuffer</code> image when the window size changes we need to catch another event, one that gets sent to us on window size change. And then destroy the image and recreate it with the new width and height. If you're having trouble following how all these snippets fit together, don't forget that you can look at the full source code on github. <a href="https://github.com/eisbehr/xlibtut">https://github.com/eisbehr/xlibtut</a></p>
+<div class="code"><table class="C codeblocktable"><tbody><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32</pre></div></td><td class="code"><div class="C codeblock"><pre><span></span><span class="c1">//</span>
+<span class="c1">// Before windowOpen = 1; and the main loop</span>
+<span class="c1">//</span>
+
+<span class="kt">int</span> <span class="n">sizeChange</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+<span class="c1">//</span>
+<span class="c1">// In the switch(ev.type)</span>
+<span class="c1">//</span>
+
+<span class="k">case</span> <span class="nl">ConfigureNotify</span><span class="p">:</span> <span class="p">{</span>
+     <span class="n">XConfigureEvent</span><span class="o">*</span> <span class="n">e</span> <span class="o">=</span> <span class="p">(</span><span class="n">XConfigureEvent</span><span class="o">*</span><span class="p">)</span> <span class="o">&amp;</span><span class="n">ev</span><span class="p">;</span>
+     <span class="n">width</span> <span class="o">=</span> <span class="n">e</span><span class="o">-&gt;</span><span class="n">width</span><span class="p">;</span>
+     <span class="n">height</span> <span class="o">=</span> <span class="n">e</span><span class="o">-&gt;</span><span class="n">height</span><span class="p">;</span>
+     <span class="n">sizeChange</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span> <span class="k">break</span><span class="p">;</span>
+
+<span class="c1">//</span>
+<span class="c1">// After the event loop, before the grid drawing</span>
+<span class="c1">//</span>
+
+<span class="k">if</span><span class="p">(</span><span class="n">sizeChange</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">sizeChange</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="n">XDestroyImage</span><span class="p">(</span><span class="n">xWindowBuffer</span><span class="p">);</span> <span class="c1">// Free's the memory we malloced;</span>
+    <span class="n">windowBufferSize</span> <span class="o">=</span> <span class="n">width</span><span class="o">*</span><span class="n">height</span><span class="o">*</span><span class="n">pixelBytes</span><span class="p">;</span>
+    <span class="n">mem</span>  <span class="o">=</span> <span class="p">(</span><span class="kt">char</span><span class="o">*</span><span class="p">)</span><span class="n">malloc</span><span class="p">(</span><span class="n">windowBufferSize</span><span class="p">);</span>
+
+    <span class="n">xWindowBuffer</span> <span class="o">=</span> <span class="n">XCreateImage</span><span class="p">(</span><span class="n">display</span><span class="p">,</span> <span class="n">visinfo</span><span class="p">.</span><span class="n">visual</span><span class="p">,</span> <span class="n">visinfo</span><span class="p">.</span><span class="n">depth</span><span class="p">,</span>
+                              <span class="n">ZPixmap</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">mem</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span>
+                               <span class="n">pixelBits</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+   <span class="p">}</span>
+</pre></div>
+</td></tr></tbody></table></div>
+<p>First we declare <code>sizeChange</code> and set it to 0. Then we add another case to handle ConfigureNotify events. These contain the current <code>width</code> and <code>height</code> of the window. We set <code>sizeChange</code> to one here to signify that <code>width</code> and <code>height</code> changed. Since we may get several configure events in one frame (one run of our main program loop), we defer the actual image destruction and recreation until a wee bit later after the event loop.</p>
+
+<p>In the <code>if(sizeChange)</code> we destroy the image, allocate memory again using the new <code>width</code> and <code>height</code>, then call <code>XCreateImage</code> the same way we did it originally. <code>XDestroyImage()</code> frees the memory we malloced, if we would like to avoid using malloc and do more hands-on memory management we would have to fill out the XImage structure ourselves.</p>
+
+<p>With all this in we can now resize our window and the grid expands to fill the window! But maybe you already spotted a problem with that we're doing now.</p>
+<h1 id="part_7_-_about_that_flicker…">Part 7 - About that flicker…</h1>
+<p>The way we do things now there is a flicker when changing the window size. This flicker is more noticeable when your CPU is slower since we're running our main loop at full speed.</p>
+
+<p>What happens is that as soon as the size of our window changes, the whole window goes to black (The window background pixel color). Even if we run in a debugger and break as soon as we hit the <code>ConfigureNotify</code> event the window is already black. Here the disconnected nature of the X system is a bit of an inconvenience. The execution of the X internal window logic and our code are not coupled.</p>
+
+<p>Special thanks goes to Miguel ("debiatan" of the <a href="https://handmade.network/">handmade.network</a> community) for the solution to this flicker problem. It's not a complete solution, but enough for the scope of this tutorial.</p>
+
+<p>The culprit is the gravity attribute on the window. By default this is set to the value <code>ForgetGravity</code>, which tells X to discard the window content on resize. We don't want this to happen, so we have to set it to <code>StaticGravity</code>. This stops the flicker.</p>
+
+<p>This means our window attributes that we set before creating the window now look like this:</p>
+<div class="code"><table class="C codeblocktable"><tbody><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="C codeblock"><pre><span></span>  <span class="n">XSetWindowAttributes</span> <span class="n">windowAttr</span><span class="p">;</span>
+  <span class="n">windowAttr</span><span class="p">.</span><span class="n">bit_gravity</span> <span class="o">=</span> <span class="n">StaticGravity</span><span class="p">;</span>
+  <span class="n">windowAttr</span><span class="p">.</span><span class="n">background_pixel</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="n">windowAttr</span><span class="p">.</span><span class="n">colormap</span> <span class="o">=</span> <span class="n">XCreateColormap</span><span class="p">(</span><span class="n">display</span><span class="p">,</span> <span class="n">root</span><span class="p">,</span> 
+                     <span class="n">visinfo</span><span class="p">.</span><span class="n">visual</span><span class="p">,</span> <span class="n">AllocNone</span><span class="p">);</span>
+  <span class="n">windowAttr</span><span class="p">.</span><span class="n">event_mask</span> <span class="o">=</span> <span class="n">StructureNotifyMask</span><span class="p">;</span> 
+  <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">attributeMask</span> <span class="o">=</span> <span class="n">CWBitGravity</span> <span class="o">|</span> <span class="n">CWBackPixel</span> <span class="o">|</span> <span class="n">CWColormap</span> <span class="o">|</span> <span class="n">CWEventMask</span><span class="p">;</span>
+</pre></div>
+</td></tr></tbody></table></div>
+<p>We simply need to set <code>windowAttr.bit_gravity</code> to <code>StaticGravity</code> and add <code>CWBitGravity</code> to the <code>attributeMask</code>.</p>
+<h1 id="part_8_-_keypress_and_keyrelease">Part 8 - KeyPress and KeyRelease</h1>
+<p>Now let's take a look at how he handle keyboard input. We take this one from the source of the events outwards.</p>
+
+<p>As we did before with the ConfigureNotify event we need to set a flag on the window to tell X that we want to receive that type of event.</p>
+<div class="code"><table class="C codeblocktable"><tbody><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="C codeblock"><pre><span></span><span class="n">windowAttr</span><span class="p">.</span><span class="n">event_mask</span> <span class="o">=</span> <span class="n">StructureNotifyMask</span> <span class="o">|</span> <span class="n">KeyPressMask</span> <span class="o">|</span> <span class="n">KeyReleaseMask</span><span class="p">;</span>
+</pre></div>
+</td></tr></tbody></table></div>
+<p>We want to know when a key if pressed, and when it is being released again.</p>
+<div class="code"><table class="C codeblocktable"><tbody><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16</pre></div></td><td class="code"><div class="C codeblock"><pre><span></span>        <span class="k">case</span> <span class="nl">KeyPress</span><span class="p">:</span> <span class="p">{</span>
+          <span class="n">XKeyPressedEvent</span><span class="o">*</span> <span class="n">e</span> <span class="o">=</span> <span class="p">(</span><span class="n">XKeyPressedEvent</span><span class="o">*</span><span class="p">)</span> <span class="o">&amp;</span><span class="n">ev</span><span class="p">;</span>
+
+          <span class="k">if</span><span class="p">(</span><span class="n">e</span><span class="o">-&gt;</span><span class="n">keycode</span> <span class="o">==</span> <span class="n">XKeysymToKeycode</span><span class="p">(</span><span class="n">display</span><span class="p">,</span> <span class="n">XK_Left</span><span class="p">))</span> <span class="n">printf</span><span class="p">(</span><span class="s">"left arrow pressed</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+          <span class="k">if</span><span class="p">(</span><span class="n">e</span><span class="o">-&gt;</span><span class="n">keycode</span> <span class="o">==</span> <span class="n">XKeysymToKeycode</span><span class="p">(</span><span class="n">display</span><span class="p">,</span> <span class="n">XK_Right</span><span class="p">))</span> <span class="n">printf</span><span class="p">(</span><span class="s">"right arrow pressed</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+          <span class="k">if</span><span class="p">(</span><span class="n">e</span><span class="o">-&gt;</span><span class="n">keycode</span> <span class="o">==</span> <span class="n">XKeysymToKeycode</span><span class="p">(</span><span class="n">display</span><span class="p">,</span> <span class="n">XK_Up</span><span class="p">))</span> <span class="n">printf</span><span class="p">(</span><span class="s">"up arrow pressed</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+          <span class="k">if</span><span class="p">(</span><span class="n">e</span><span class="o">-&gt;</span><span class="n">keycode</span> <span class="o">==</span> <span class="n">XKeysymToKeycode</span><span class="p">(</span><span class="n">display</span><span class="p">,</span> <span class="n">XK_Down</span><span class="p">))</span> <span class="n">printf</span><span class="p">(</span><span class="s">"down arrow pressed</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+        <span class="p">}</span> <span class="k">break</span><span class="p">;</span>
+        <span class="k">case</span> <span class="nl">KeyRelease</span><span class="p">:</span> <span class="p">{</span>
+          <span class="n">XKeyPressedEvent</span><span class="o">*</span> <span class="n">e</span> <span class="o">=</span> <span class="p">(</span><span class="n">XKeyPressedEvent</span><span class="o">*</span><span class="p">)</span> <span class="o">&amp;</span><span class="n">ev</span><span class="p">;</span>
+
+          <span class="k">if</span><span class="p">(</span><span class="n">e</span><span class="o">-&gt;</span><span class="n">keycode</span> <span class="o">==</span> <span class="n">XKeysymToKeycode</span><span class="p">(</span><span class="n">display</span><span class="p">,</span> <span class="n">XK_Left</span><span class="p">))</span> <span class="n">printf</span><span class="p">(</span><span class="s">"left arrow released</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+          <span class="k">if</span><span class="p">(</span><span class="n">e</span><span class="o">-&gt;</span><span class="n">keycode</span> <span class="o">==</span> <span class="n">XKeysymToKeycode</span><span class="p">(</span><span class="n">display</span><span class="p">,</span> <span class="n">XK_Right</span><span class="p">))</span> <span class="n">printf</span><span class="p">(</span><span class="s">"right arrow released</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+          <span class="k">if</span><span class="p">(</span><span class="n">e</span><span class="o">-&gt;</span><span class="n">keycode</span> <span class="o">==</span> <span class="n">XKeysymToKeycode</span><span class="p">(</span><span class="n">display</span><span class="p">,</span> <span class="n">XK_Up</span><span class="p">))</span> <span class="n">printf</span><span class="p">(</span><span class="s">"up arrow released</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+          <span class="k">if</span><span class="p">(</span><span class="n">e</span><span class="o">-&gt;</span><span class="n">keycode</span> <span class="o">==</span> <span class="n">XKeysymToKeycode</span><span class="p">(</span><span class="n">display</span><span class="p">,</span> <span class="n">XK_Down</span><span class="p">))</span> <span class="n">printf</span><span class="p">(</span><span class="s">"down arrow released</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+        <span class="p">}</span> <span class="k">break</span><span class="p">;</span>
+</pre></div>
+</td></tr></tbody></table></div>
+<p>We need to add cases in the event loop to handle these two types of events. This kind of key handling is very simple. We cast the incoming event like we are used to and check if it belongs to one of the keys we want to check for. In Xlib there are two different kind of concepts involved here, one is the <code>keycode</code> and the other is the <code>Keysym</code> or key symbol. A <code>keycode</code> is a number that is assigned to actual keys on your keyboard. Your left arrow key has a different <code>keycode</code> from your right arrow key, and both of those are different from the <code>A</code> key. But what if we don't just want to know which physical key was pressed, but rather what symbol the user pressed? This is what <code>keysyms</code> are for. On different keyboard layouts one and the same symbol, like <code>A</code>, can be on different keys on the keyboard. To query a <code>keycode</code> from a symbol we use <code>XKeysymToKeycode()</code>. We pass it our display so it knows what keyboard layout to work with and then we pass it one of the defined <code>keysym</code> macros. You can find the full list of defined <code>keysyms</code> in <code>/usr/include/X11/keysymdef.h</code>.</p>
+
+<p>Makes sure to run this and the following example from the terminal so you can see the <code>printf</code> output.</p>
+
+<p>This is basic keyboard handling in the base X API. For what we do next, we have to go deeper.</p>
+<h1 id="part_9_-_utf-8_characters_from_xinput_no,_not_the_game_controller_one">Part 9 - UTF-8 Characters from XInput (No, not the game controller one)</h1>
+<p>This is where things get slightly more annoying to deal with. UTF-8 is the default character encoding these days, and rightly so. But X is old, and so is the basic keyboard API. Back then UTF-8 didn't even exist, so at some point an extension to the basic keyboard features of X was defined, this time with support for UTF-8, but also more of a bother to set up. This extension is called X Input, and even though it is called an extension, these days it can be assumed to be present on any Linux system.
+Most of these function are documented in the Xlib documentation, <code>Xutf8LookupString</code> is from a different standards set and has a manpage.</p>
+<div class="code"><table class="C codeblocktable"><tbody><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39</pre></div></td><td class="code"><div class="C codeblock"><pre><span></span>  <span class="c1">// After setSizeHint(display, window, 400, 300, 0, 0); </span>
+
+  <span class="n">XIM</span> <span class="n">xInputMethod</span> <span class="o">=</span> <span class="n">XOpenIM</span><span class="p">(</span><span class="n">display</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+  <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">xInputMethod</span><span class="p">)</span>
+    <span class="p">{</span>
+      <span class="n">printf</span><span class="p">(</span><span class="s">"Input Method could not be opened</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+    <span class="p">}</span>
+
+  <span class="n">XIMStyles</span><span class="o">*</span> <span class="n">styles</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">XGetIMValues</span><span class="p">(</span><span class="n">xInputMethod</span><span class="p">,</span> <span class="n">XNQueryInputStyle</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">styles</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">)</span> <span class="o">||</span> <span class="o">!</span><span class="n">styles</span><span class="p">)</span>
+    <span class="p">{</span>
+      <span class="n">printf</span><span class="p">(</span><span class="s">"Input Styles could not be retrieved</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+    <span class="p">}</span>
+
+  <span class="n">XIMStyle</span> <span class="n">bestMatchStyle</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">styles</span><span class="o">-&gt;</span><span class="n">count_styles</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+    <span class="p">{</span>
+      <span class="n">XIMStyle</span> <span class="n">thisStyle</span> <span class="o">=</span> <span class="n">styles</span><span class="o">-&gt;</span><span class="n">supported_styles</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">thisStyle</span> <span class="o">==</span> <span class="p">(</span><span class="n">XIMPreeditNothing</span> <span class="o">|</span> <span class="n">XIMStatusNothing</span><span class="p">))</span>
+    <span class="p">{</span>
+      <span class="n">bestMatchStyle</span> <span class="o">=</span> <span class="n">thisStyle</span><span class="p">;</span>
+      <span class="k">break</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="n">XFree</span><span class="p">(</span><span class="n">styles</span><span class="p">);</span>
+
+  <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">bestMatchStyle</span><span class="p">)</span>
+    <span class="p">{</span>
+      <span class="n">printf</span><span class="p">(</span><span class="s">"No matching input style could be determined</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+    <span class="p">}</span>
+
+  <span class="n">XIC</span> <span class="n">xInputContext</span> <span class="o">=</span> <span class="n">XCreateIC</span><span class="p">(</span><span class="n">xInputMethod</span><span class="p">,</span> <span class="n">XNInputStyle</span><span class="p">,</span> <span class="n">bestMatchStyle</span><span class="p">,</span>
+                <span class="n">XNClientWindow</span><span class="p">,</span> <span class="n">window</span><span class="p">,</span>
+                <span class="n">XNFocusWindow</span><span class="p">,</span> <span class="n">window</span><span class="p">,</span>
+                <span class="nb">NULL</span><span class="p">);</span>
+  <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">xInputContext</span><span class="p">)</span>
+    <span class="p">{</span>
+      <span class="n">printf</span><span class="p">(</span><span class="s">"Input Context could not be created</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+    <span class="p">}</span>
+</pre></div>
+</td></tr></tbody></table></div>
+<p>A lot of code for very little gain. This gives us an X Input setup that is totally vanilla and does what the base keyboard API does without any setup.</p>
+
+<p>First we open an <code>X Input Method</code> with <code>XOpenIM()</code>, it takes the display and then three values that have something to do with a resource database… we can ignore these for defaults. With this input method we can call <code>XGetIMValues()</code>, like many functions in the X Input API this is a variable arguments function. We state what kind of value we want to get by using the macro <code>XNQueryInputStyle</code>, then supply a pointer for it to fill and end the varargs with NULL. Now we have a list of input styles. I'm not entirely sure what an input style is, but since we need it later we have to get one.</p>
+
+<p>Now that we have a whole list of input styles let's grab one to use. We iterate through all styles we got back, if the style has the flags <code>XIMPreeditNothing</code> and <code>XIMStatusNothing</code> we take it and break out. The documentation is also quite vague on this one, all I know is that those two define and input style that is not special in any way.</p>
+
+<p>With the input method and input style queried we can create an input context, this is the part we actually need. <code>XCreateIC()</code> is another variable argument function. It takes the input method, we supply our <code>bestMatchStyle</code> and tell it what our window is and that it should focus on it (send events to it when in focus). The varargs are finalized with <code>NULL</code>.</p>
+
+<p>Now on to the reason why we need the input context.</p>
+<div class="code"><table class="C codeblocktable"><tbody><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18</pre></div></td><td class="code"><div class="C codeblock"><pre><span></span>          <span class="c1">// In case KeyPress:</span>
+          <span class="c1">// After XKeyPressedEvent* e = (XKeyPressedEvent*) &amp;ev;</span>
+
+          <span class="kt">int</span> <span class="n">symbol</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+          <span class="n">Status</span> <span class="n">status</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+          <span class="n">Xutf8LookupString</span><span class="p">(</span><span class="n">xInputContext</span><span class="p">,</span> <span class="n">e</span><span class="p">,</span> <span class="p">(</span><span class="kt">char</span><span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">symbol</span><span class="p">,</span>
+                <span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">status</span><span class="p">);</span>
+
+          <span class="k">if</span><span class="p">(</span><span class="n">status</span> <span class="o">==</span> <span class="n">XBufferOverflow</span><span class="p">)</span>
+        <span class="p">{</span>
+          <span class="c1">// Should not happen since there are no utf-8 characters larger than 24bits</span>
+          <span class="c1">// But something to be aware of when used to directly write to a string buffer</span>
+          <span class="n">printf</span><span class="p">(</span><span class="s">"Buffer overflow when trying to create keyboard symbol map</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+        <span class="p">}</span>
+          <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">status</span> <span class="o">==</span> <span class="n">XLookupChars</span><span class="p">)</span>
+        <span class="p">{</span>
+          <span class="n">printf</span><span class="p">(</span><span class="s">"%s</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="p">(</span><span class="kt">char</span><span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">symbol</span><span class="p">);</span>
+        <span class="p">}</span>
+</pre></div>
+</td></tr></tbody></table></div>
+<p>The function <code>Xutf8LookupString()</code> takes an input context, an <code>XKeyPressedEvent</code>, a buffer for the returned UTF-8 character and the buffer size, it can return the corresponding <code>KeySym</code> in a pointer, and as a last argument a <code>Status</code> pointer that gets filled.</p>
+
+<p>What happens next is really simple again. We check the status, and if it is a character we print it out.</p>
+<h1 id="conclusion">Conclusion</h1>
+<p>This concludes our little tour through Xlib and related technologies. At this point you should be able to hit the ground running with a good set of basics and find your way through some of the <del>even more</del> obscure features and settings of this windowing ecosystem.
+As you can see, there are a lot of different layers to this system. Old functions with a legacy, some superseded by extensions, some features only available through interaction with a window manager (Which might not be there at all). That's really why people are reluctant to interact with this technology themselves. It's not unified and documentation is spread over many documents (and generally hard to find), but I hope you can see that it is doable with a little time investment!</p>
+
+        </div>
+        </div>
+    </article>
+
+                
+            </div>
+        
+    </div>
+    <div class="sidebar flex-shrink-0 mw6 w-30-l self-center self-start-l mh3 mh0-ns ml3-l overflow-hidden">
+        
+<div class="content-block toc">
+    <span class="title">Contents</span>
+    <ul><li><a href="https://handmade.network/wiki/2834-tutorial_a_tour_through_xlib_and_related_technologies#introduction"><span class="toc-number">1.</span> Introduction</a></li><ul><li><a href="https://handmade.network/wiki/2834-tutorial_a_tour_through_xlib_and_related_technologies#before_we_start"><span class="toc-number">1.1.</span> Before we start</a></li><li><a href="https://handmade.network/wiki/2834-tutorial_a_tour_through_xlib_and_related_technologies#an_overview"><span class="toc-number">1.2.</span> An overview</a></li><li><a href="https://handmade.network/wiki/2834-tutorial_a_tour_through_xlib_and_related_technologies#finally_some_code"><span class="toc-number">1.3.</span> Finally some code</a></li></ul><li><a href="https://handmade.network/wiki/2834-tutorial_a_tour_through_xlib_and_related_technologies#part_0_-_creating_a_window"><span class="toc-number">2.</span> Part 0 - Creating a Window</a></li><li><a href="https://handmade.network/wiki/2834-tutorial_a_tour_through_xlib_and_related_technologies#part_1_-_closing_the_application"><span class="toc-number">3.</span> Part 1 - Closing the Application</a></li><li><a href="https://handmade.network/wiki/2834-tutorial_a_tour_through_xlib_and_related_technologies#part_2_-_minimum_size"><span class="toc-number">4.</span> Part 2 - Minimum Size</a></li><li><a href="https://handmade.network/wiki/2834-tutorial_a_tour_through_xlib_and_related_technologies#part_3_-_maximize_window"><span class="toc-number">5.</span> Part 3 - Maximize Window</a></li><li><a href="https://handmade.network/wiki/2834-tutorial_a_tour_through_xlib_and_related_technologies#part_4_-_even_better_shutdown"><span class="toc-number">6.</span> Part 4 - Even better shutdown</a></li><li><a href="https://handmade.network/wiki/2834-tutorial_a_tour_through_xlib_and_related_technologies#part_5_-_the_buffer"><span class="toc-number">7.</span> Part 5 - The buffer</a></li><li><a href="https://handmade.network/wiki/2834-tutorial_a_tour_through_xlib_and_related_technologies#part_6_-_adapting_to_changing_window_size"><span class="toc-number">8.</span> Part 6 - Adapting to changing window size</a></li><li><a href="https://handmade.network/wiki/2834-tutorial_a_tour_through_xlib_and_related_technologies#part_7_-_about_that_flicker%E2%80%A6"><span class="toc-number">9.</span> Part 7 - About that flicker…</a></li><li><a href="https://handmade.network/wiki/2834-tutorial_a_tour_through_xlib_and_related_technologies#part_8_-_keypress_and_keyrelease"><span class="toc-number">10.</span> Part 8 - KeyPress and KeyRelease</a></li><li><a href="https://handmade.network/wiki/2834-tutorial_a_tour_through_xlib_and_related_technologies#part_9_-_utf-8_characters_from_xinput_no,_not_the_game_controller_one"><span class="toc-number">11.</span> Part 9 - UTF-8 Characters from XInput (No, not the game controller one)</a></li><li><a href="https://handmade.network/wiki/2834-tutorial_a_tour_through_xlib_and_related_technologies#conclusion"><span class="toc-number">12.</span> Conclusion</a></li></ul>
+</div>
+
+    </div>
+</div>
+
+        
+<footer class="pa3 pa4-l">
+    <h2>
+         Community by 
+        <a href="https://handmade.network/home">handmade.network</a>
+    </h2>
+    <ul class="list">
+        
+            
+<li class="ma0 pa0 dib-ns">
+	
+		
+			
+		
+		<a href="https://handmade.network/about">About</a>
+	
+</li>
+
+            
+<li class="ma0 pa0 dib-ns">
+	
+		
+			
+		
+		<a href="https://handmade.network/code-of-conduct">Code of Conduct</a>
+	
+</li>
+
+            
+<li class="ma0 pa0 dib-ns">
+	
+		
+			
+		
+		<a href="https://handmade.network/communication-guidelines">Communication Guidelines</a>
+	
+</li>
+
+            
+<li class="ma0 pa0 dib-ns">
+	
+		
+			
+		
+		<a href="https://handmade.network/contact">Contact</a>
+	
+</li>
+
+            
+<li class="ma0 pa0 dib-ns">
+	
+		
+			
+		
+		<a href="https://handmade.network/sitemap">Sitemap</a>
+	
+</li>
+
+        
+    </ul>
+</footer>
+
+    </div>
+
+
+
+</body></html>
